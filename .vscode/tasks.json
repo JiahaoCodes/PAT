@@ -1,0 +1,46 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "create new file",
+            "type": "shell",
+            "command": "echo '# ${input:description}\n\ndef solution():\n    pass\n\nif __name__ == \"__main__\":\n    solution()' > ${input:file_name}.py",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "problemMatcher":{
+                "owner": "custom",
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(error|warning):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id" : "file_name",
+            "type": "promptString",
+            "description": "Enter the name of the file to create",
+            "default": "new_file"
+        },
+        {
+            "id" : "description",
+            "type": "promptString",
+            "description": "Enter the description of the file",
+            "default": "This is a new file"
+        }
+    ]
+}
